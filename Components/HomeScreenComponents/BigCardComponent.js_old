@@ -1,0 +1,39 @@
+import React, {useRef, useState} from 'react'
+import { View, Text, TouchableWithoutFeedback, Image } from 'react-native'
+import { Video, ResizeMode } from 'expo-av'
+
+const BigCardComponent = () => {
+
+    const video = useRef(null)
+    const [status, setStatus] = useState({})
+
+
+  return (
+    <TouchableWithoutFeedback>
+        <View className="mt-7 mx-3 shadow-xl h-64 relative">
+            <Video
+                className="h-full rounded-3xl"
+                ref={video}
+                source={require("../../assets/images/test/dusan_barber.mp4")}
+                useNativeControls={false}
+                resizeMode={ResizeMode.COVER}
+                isMuted
+                isLooping
+                shouldPlay
+                onPlaybackStatusUpdate={status => setStatus(() => status)}
+                />
+                <View className="absolute bottom-5 left-5 ">
+                    <Text className="text-lg text-gray-300">Barber shop</Text>
+                    <Text className="text-3xl font-bold text-gray-50">1 NA 1</Text>
+                    <Text className="text-md text-gray-400">Za dlaku drugačiji</Text>
+                </View>
+            {/* <Image 
+                source={require("../../assets/images/test/dusan_barber.jpg")}
+                resizeMode='cover'
+            /> */}
+        </View>
+    </TouchableWithoutFeedback>
+  )
+}
+
+export default BigCardComponent
